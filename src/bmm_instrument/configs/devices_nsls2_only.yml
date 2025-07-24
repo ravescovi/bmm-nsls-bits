@@ -8,7 +8,7 @@
 
 # Future NSLS-II specific devices can be added here:
 # - Ring current monitoring
-# - Beam position monitors  
+# - Beam position monitors
 # - NSLS-II specific shutters
 # - Beamline-specific vacuum gauges
 # - etc.

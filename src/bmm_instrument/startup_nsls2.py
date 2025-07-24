@@ -6,7 +6,7 @@ Removes APS-specific dependencies and adds BMM-specific functionality.
 
 Includes:
 * Python script
-* IPython console  
+* IPython console
 * Jupyter notebook
 * Bluesky queueserver
 """
@@ -35,7 +35,7 @@ from apsbits.utils.logging_setup import configure_logging
 
 # BMM-specific imports
 from .devices import *  # Import all BMM device classes
-from .plans import *    # Import all BMM plans
+from .plans import *  # Import all BMM plans
 
 # Configuration block
 # Get the path to the instrument package
@@ -66,16 +66,17 @@ RE, sd = init_RE(iconfig, bec_instance=bec, cat_instance=cat)
 # delete this block if not using Nexus
 if iconfig.get("NEXUS_DATA_FILES", {}).get("ENABLE", False):
     from .callbacks.nexus_data_file_writer import nxwriter_init
+
     nxwriter = nxwriter_init(RE)
 
-# Optional SPEC callback block  
+# Optional SPEC callback block
 # delete this block if not using SPEC
 if iconfig.get("SPEC_DATA_FILES", {}).get("ENABLE", False):
     from .callbacks.spec_data_file_writer import init_specwriter_with_RE
     from .callbacks.spec_data_file_writer import newSpecFile  # noqa: F401
     from .callbacks.spec_data_file_writer import spec_comment  # noqa: F401
     from .callbacks.spec_data_file_writer import specwriter  # noqa: F401
-    
+
     init_specwriter_with_RE(RE)
 
 # Queue server block - import standard plans
@@ -109,27 +110,27 @@ logger.info("BMM NSLS-II instrument initialization complete")
 try:
     # Try to create common device references if they exist in oregistry
     available_devices = list(oregistry.keys())
-    
+
     # Log available devices for debugging
     logger.info(f"Available devices: {len(available_devices)} devices loaded")
     logger.debug(f"Device names: {available_devices}")
-    
+
     # Set mock mode status
     mock_mode = (
         os.environ.get("BMM_MOCK_MODE", "NO") == "YES"
         or os.environ.get("RUNNING_IN_NSLS2_CI", "NO") == "YES"
     )
-    
+
     if mock_mode:
         logger.info("Running in MOCK MODE - no hardware connections")
     else:
         logger.info("Running in LIVE MODE - connecting to hardware")
-        
+
 except Exception as e:
     logger.warning(f"Could not create device references: {e}")
 
 # Print startup summary
-logger.info("="*50)
+logger.info("=" * 50)
 logger.info("BMM NSLS-II BITS Instrument Ready")
 logger.info(f"Run Engine: {RE}")
 logger.info(f"Best Effort Callback: {bec}")
@@ -137,4 +138,4 @@ logger.info(f"Supplemental Detectors: {sd}")
 logger.info(f"Catalog: {cat}")
 logger.info(f"Devices loaded: {len(oregistry)}")
 logger.info(f"Mock mode: {mock_mode}")
-logger.info("="*50)
+logger.info("=" * 50)

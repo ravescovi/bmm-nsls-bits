@@ -1,6 +1,6 @@
 # Configuration for the BMM NSLS-II Bluesky instrument package.
 
-# identify the version of this iconfig.yml file  
+# identify the version of this iconfig.yml file
 ICONFIG_VERSION: 2.0.1
 
 # BMM beamline specific configuration
@@ -54,7 +54,7 @@ NEXUS_DATA_FILES:
 SPEC_DATA_FILES:
     ENABLE: true
     FILE_EXTENSION: dat
-    # BMM specific SPEC configuration  
+    # BMM specific SPEC configuration
     FILE_PATH: /nsls2/data/bmm/shared/{year}/{month}/{day}/
     SCAN_ID_PREFIX: bmm_
 
@@ -89,17 +89,17 @@ XAFS:
         Zn_K: 9659
         Ni_K: 8333
         Co_K: 7709
-        
+
     # Default scan parameters
     DEFAULT_SCAN_RANGE: [-200, 800]  # eV relative to edge
     DEFAULT_STEP_SIZE: 0.5  # eV
-    
-### Motor Configuration  
+
+### Motor Configuration
 MOTORS:
     # Default motor timeouts and tolerances
     DEFAULT_TIMEOUT: 30.0  # seconds
     DEFAULT_TOLERANCE: 0.01  # user units
-    
+
 ### Detector Configuration
 DETECTORS:
     # Ion chamber settings
@@ -107,7 +107,7 @@ DETECTORS:
         I0_GAS: "N2"
         IT_GAS: "N2"
         IR_GAS: "Ar"
-        
+
     # Fluorescence detector settings
     XSPRESS3:
         DEFAULT_ELEMENTS: 7
@@ -120,7 +120,7 @@ TEMPERATURE:
         DEFAULT_SETPOINT: 300.0  # K
         STABILITY_TOLERANCE: 0.5  # K
         STABILITY_TIME: 30.0  # seconds
-        
+
     LINKAM:
         DEFAULT_SETPOINT: 25.0  # C
         STABILITY_TOLERANCE: 1.0  # C

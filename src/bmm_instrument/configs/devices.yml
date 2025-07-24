@@ -37,7 +37,7 @@ ophyd.EpicsMotor:
   prefix: "FE:C06B-OP{Slt:2-Ax:B}Mtr"
   labels: ["frontend", "slits"]
 
-# Frontend Slit Readbacks
+# Frontend Slit Readbacks and Storage Ring BPM
 ophyd.EpicsSignalRO:
 - name: fe_slits_hsize
   prefix: "FE:C06B-OP{Slt:12-Ax:X}size"
@@ -51,9 +51,7 @@ ophyd.EpicsSignalRO:
 - name: fe_slits_vcenter
   prefix: "FE:C06B-OP{Slt:12-Ax:Y}center"
   labels: ["frontend", "slits", "baseline"]
-
 # Storage Ring BPM
-ophyd.EpicsSignalRO:
 - name: sr_bpm4_x
   prefix: "SR:C06-BI{BPM:4}Pos:X-I"
   labels: ["storage_ring", "bpm", "baseline"]
@@ -283,11 +281,11 @@ ophyd.EpicsMotor:
 #   prefix: "XF:06BM-BI{EM:1}EM180:"
 #   labels: ["detectors", "electrometer", "baseline"]
 # ic0:
-#   prefix: "XF:06BM-BI{IC:0}EM180:"  
+#   prefix: "XF:06BM-BI{IC:0}EM180:"
 #   labels: ["detectors", "ion_chambers"]
 # ic1:
 #   prefix: "XF:06BM-BI{IC:1}EM180:"
-#   labels: ["detectors", "ion_chambers"]  
+#   labels: ["detectors", "ion_chambers"]
 # ic2:
 #   prefix: "XF:06BM-BI{IC:3}EM180:"
 #   labels: ["detectors", "ion_chambers"]

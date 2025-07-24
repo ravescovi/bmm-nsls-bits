@@ -17,7 +17,7 @@ classifiers = [
 ]
 license = "BSD-3-Clause"
 license-files = ["LICENSE*"]
-dependencies = [ 
+dependencies = [
     "apsbits",
     "ophyd-async>=0.3.0",
     "bluesky>=1.10.0",
