@@ -1,0 +1,98 @@
+Metadata-Version: 2.4
+Name: bmm_instrument
+Version: 0.0.1
+Summary: BMM NSLS-II BITS Instrument Package
+Author-email: Rafael Vescovi <rvescovi@anl.gov>
+Maintainer-email: Rafael Vescovi <rvescovi@anl.gov>
+License-Expression: BSD-3-Clause
+Project-URL: Homepage, https://github.com/ravescovi/bmm-nsls-bits
+Project-URL: Bug Tracker, https://github.com/ravescovi/bmm-nsls-bits/issues
+Keywords: NSLS-II,BMM,XAFS,beamline,bluesky
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: apsbits
+Requires-Dist: ophyd-async>=0.3.0
+Requires-Dist: bluesky>=1.10.0
+Requires-Dist: databroker
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Provides-Extra: doc
+Requires-Dist: babel; extra == "doc"
+Requires-Dist: ipykernel; extra == "doc"
+Requires-Dist: jinja2; extra == "doc"
+Requires-Dist: markupsafe; extra == "doc"
+Requires-Dist: myst_parser; extra == "doc"
+Requires-Dist: nbsphinx; extra == "doc"
+Requires-Dist: pydata-sphinx-theme; extra == "doc"
+Requires-Dist: pygments-ipython-console; extra == "doc"
+Requires-Dist: pygments; extra == "doc"
+Requires-Dist: sphinx-design; extra == "doc"
+Requires-Dist: sphinx-tabs; extra == "doc"
+Requires-Dist: sphinx; extra == "doc"
+Provides-Extra: all
+Requires-Dist: bmm_instrument[dev,doc]; extra == "all"
+
+# BMM NSLS-II BITS Instrument Package
+
+BITS (Bluesky Instrument Toolkit System) package for the BMM (Beamline for Materials Measurement) beamline at NSLS-II.
+
+## Overview
+
+This package provides a BITS-compliant implementation for the BMM beamline, migrated from the original profile collection to use modern Bluesky patterns including:
+
+- ophyd-async devices
+- Structured YAML configuration
+- Enhanced error handling and mock mode support
+- Modern plan implementations
+- BITS framework integration
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+### Starting the Instrument
+
+```python
+from bmm_instrument.startup import *
+```
+
+### Running Demo Plans
+
+```python
+RE(sim_print_plan())
+RE(sim_count_plan())
+RE(sim_rel_scan_plan())
+```
+
+## Configuration
+
+Configuration files are located in `src/bmm_instrument/configs/`:
+
+- `devices.yml` - Device PV mappings and configurations
+- `iconfig.yml` - Instrument configuration
+- `extra_logging.yml` - Logging configuration
+
+## Development
+
+This package was generated using the BITS framework and follows BITS conventions for beamline instrument packages.
+
+## License
+
+BSD-3-Clause

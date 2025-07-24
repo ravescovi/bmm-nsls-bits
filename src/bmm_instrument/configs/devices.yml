@@ -1,0 +1,317 @@
+# BMM NSLS-II BITS Device Configuration
+# EPICS device definitions for BMM beamline using BITS framework
+
+# Simulated devices for testing
+apsbits.utils.sim_creator.predefined_device:
+- { creator: ophyd.sim.motor, name: sim_motor }
+- { creator: ophyd.sim.noisy_det, name: sim_det }
+
+apstools.devices.SimulatedApsPssShutterWithStatus:
+- name: shutter
+  labels: [ "shutters", "baseline" ]
+
+# Frontend Slits
+ophyd.EpicsMotor:
+- name: fe_slits_horizontal1
+  prefix: "FE:C06B-OP{Slt:1-Ax:Hrz}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_incline1
+  prefix: "FE:C06B-OP{Slt:1-Ax:Inc}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_o
+  prefix: "FE:C06B-OP{Slt:1-Ax:O}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_t
+  prefix: "FE:C06B-OP{Slt:1-Ax:T}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_horizontal2
+  prefix: "FE:C06B-OP{Slt:2-Ax:Hrz}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_incline2
+  prefix: "FE:C06B-OP{Slt:2-Ax:Inc}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_i
+  prefix: "FE:C06B-OP{Slt:2-Ax:I}Mtr"
+  labels: ["frontend", "slits"]
+- name: fe_slits_b
+  prefix: "FE:C06B-OP{Slt:2-Ax:B}Mtr"
+  labels: ["frontend", "slits"]
+
+# Frontend Slit Readbacks
+ophyd.EpicsSignalRO:
+- name: fe_slits_hsize
+  prefix: "FE:C06B-OP{Slt:12-Ax:X}size"
+  labels: ["frontend", "slits", "baseline"]
+- name: fe_slits_vsize
+  prefix: "FE:C06B-OP{Slt:12-Ax:Y}size"
+  labels: ["frontend", "slits", "baseline"]
+- name: fe_slits_hcenter
+  prefix: "FE:C06B-OP{Slt:12-Ax:X}center"
+  labels: ["frontend", "slits", "baseline"]
+- name: fe_slits_vcenter
+  prefix: "FE:C06B-OP{Slt:12-Ax:Y}center"
+  labels: ["frontend", "slits", "baseline"]
+
+# Storage Ring BPM
+ophyd.EpicsSignalRO:
+- name: sr_bpm4_x
+  prefix: "SR:C06-BI{BPM:4}Pos:X-I"
+  labels: ["storage_ring", "bpm", "baseline"]
+- name: sr_bpm4_y
+  prefix: "SR:C06-BI{BPM:4}Pos:Y-I"
+  labels: ["storage_ring", "bpm", "baseline"]
+- name: sr_bpm5_x
+  prefix: "SR:C06-BI{BPM:5}Pos:X-I"
+  labels: ["storage_ring", "bpm", "baseline"]
+- name: sr_bpm5_y
+  prefix: "SR:C06-BI{BPM:5}Pos:Y-I"
+  labels: ["storage_ring", "bpm", "baseline"]
+
+# Mirror M1
+ophyd.EpicsMotor:
+- name: m1_yu
+  prefix: "XF:06BM-OP{Mir:M1-Ax:YU}Mtr"
+  labels: ["mirrors", "m1", "baseline"]
+- name: m1_ydo
+  prefix: "XF:06BM-OP{Mir:M1-Ax:YDO}Mtr"
+  labels: ["mirrors", "m1", "baseline"]
+- name: m1_ydi
+  prefix: "XF:06BM-OP{Mir:M1-Ax:YDI}Mtr"
+  labels: ["mirrors", "m1", "baseline"]
+- name: m1_xu
+  prefix: "XF:06BM-OP{Mir:M1-Ax:XU}Mtr"
+  labels: ["mirrors", "m1", "baseline"]
+- name: m1_xd
+  prefix: "XF:06BM-OP{Mir:M1-Ax:XD}Mtr"
+  labels: ["mirrors", "m1", "baseline"]
+
+# Mirror M2
+ophyd.EpicsMotor:
+- name: m2_yu
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:YU}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+- name: m2_ydo
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:YDO}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+- name: m2_ydi
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:YDI}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+- name: m2_xu
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:XU}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+- name: m2_xd
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:XD}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+- name: m2_bender
+  prefix: "XF:06BMA-OP{Mir:M2-Ax:Bend}Mtr"
+  labels: ["mirrors", "m2", "baseline"]
+
+# Mirror M3
+ophyd.EpicsMotor:
+- name: m3_yu
+  prefix: "XF:06BMA-OP{Mir:M3-Ax:YU}Mtr"
+  labels: ["mirrors", "m3", "baseline"]
+- name: m3_ydo
+  prefix: "XF:06BMA-OP{Mir:M3-Ax:YDO}Mtr"
+  labels: ["mirrors", "m3", "baseline"]
+- name: m3_ydi
+  prefix: "XF:06BMA-OP{Mir:M3-Ax:YDI}Mtr"
+  labels: ["mirrors", "m3", "baseline"]
+- name: m3_xu
+  prefix: "XF:06BMA-OP{Mir:M3-Ax:XU}Mtr"
+  labels: ["mirrors", "m3", "baseline"]
+- name: m3_xd
+  prefix: "XF:06BMA-OP{Mir:M3-Ax:XD}Mtr"
+  labels: ["mirrors", "m3", "baseline"]
+
+# DCM Monochromator
+ophyd.EpicsMotor:
+- name: dcm_bragg
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:Bragg}Mtr"
+  labels: ["monochromator", "dcm", "baseline"]
+- name: dcm_pitch2
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:P2}Mtr"
+  labels: ["monochromator", "dcm"]
+- name: dcm_roll2
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:R2}Mtr"
+  labels: ["monochromator", "dcm"]
+- name: dcm_perp2
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:Per2}Mtr"
+  labels: ["monochromator", "dcm"]
+- name: dcm_para2
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:Par2}Mtr"
+  labels: ["monochromator", "dcm"]
+- name: dcm_x
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:X}Mtr"
+  labels: ["monochromator", "dcm"]
+- name: dcm_y
+  prefix: "XF:06BMA-OP{Mono:DCM1-Ax:Y}Mtr"
+  labels: ["monochromator", "dcm"]
+
+# DCM Thermocouple
+ophyd.EpicsSignalRO:
+- name: dcm_thermocouple
+  prefix: "XF:06BMA-OP{Mono:DCM-Crys:1}T:C-I"
+  labels: ["monochromator", "dcm", "baseline"]
+
+# Slits DM2
+ophyd.EpicsMotor:
+- name: dm2_slits_o
+  prefix: "XF:06BMA-OP{Slt:01-Ax:O}Mtr"
+  labels: ["slits", "dm2"]
+- name: dm2_slits_i
+  prefix: "XF:06BMA-OP{Slt:01-Ax:I}Mtr"
+  labels: ["slits", "dm2"]
+- name: dm2_slits_t
+  prefix: "XF:06BMA-OP{Slt:01-Ax:T}Mtr"
+  labels: ["slits", "dm2"]
+- name: dm2_slits_b
+  prefix: "XF:06BMA-OP{Slt:01-Ax:B}Mtr"
+  labels: ["slits", "dm2"]
+
+# Slits DM3
+ophyd.EpicsMotor:
+- name: dm3_slits_o
+  prefix: "XF:06BM-BI{Slt:02-Ax:O}Mtr"
+  labels: ["slits", "dm3"]
+- name: dm3_slits_i
+  prefix: "XF:06BM-BI{Slt:02-Ax:I}Mtr"
+  labels: ["slits", "dm3"]
+- name: dm3_slits_t
+  prefix: "XF:06BM-BI{Slt:02-Ax:T}Mtr"
+  labels: ["slits", "dm3"]
+- name: dm3_slits_b
+  prefix: "XF:06BM-BI{Slt:02-Ax:B}Mtr"
+  labels: ["slits", "dm3"]
+
+# Diagnostic Stations
+ophyd.EpicsMotor:
+# DM1
+- name: dm1_filters1
+  prefix: "XF:06BMA-BI{Fltr:01-Ax:Y1}Mtr"
+  labels: ["diagnostics", "dm1", "filters"]
+- name: dm1_filters2
+  prefix: "XF:06BMA-BI{Fltr:01-Ax:Y2}Mtr"
+  labels: ["diagnostics", "dm1", "filters"]
+# DM2
+- name: dm2_fs
+  prefix: "XF:06BMA-BI{Diag:02-Ax:Y}Mtr"
+  labels: ["diagnostics", "dm2", "screen"]
+# DM3
+- name: dm3_fs
+  prefix: "XF:06BM-BI{FS:03-Ax:Y}Mtr"
+  labels: ["diagnostics", "dm3", "screen"]
+- name: dm3_foils
+  prefix: "XF:06BM-BI{Fltr:01-Ax:Y}Mtr"
+  labels: ["diagnostics", "dm3", "foils"]
+- name: dm3_bct
+  prefix: "XF:06BM-BI{BCT-Ax:Y}Mtr"
+  labels: ["diagnostics", "dm3", "bct"]
+- name: dm3_bpm
+  prefix: "XF:06BM-BI{BPM:1-Ax:Y}Mtr"
+  labels: ["diagnostics", "dm3", "bpm"]
+
+# XAFS Table
+ophyd.EpicsMotor:
+- name: xafs_table_yu
+  prefix: "XF:06BMA-BI{XAFS-Ax:Tbl_YU}Mtr"
+  labels: ["xafs_table", "baseline"]
+- name: xafs_table_ydo
+  prefix: "XF:06BMA-BI{XAFS-Ax:Tbl_YDO}Mtr"
+  labels: ["xafs_table", "baseline"]
+- name: xafs_table_ydi
+  prefix: "XF:06BMA-BI{XAFS-Ax:Tbl_YDI}Mtr"
+  labels: ["xafs_table", "baseline"]
+- name: xafs_table_xd
+  prefix: "XF:06BMA-BI{XAFS-Ax:Tbl_XD}Mtr"
+  labels: ["xafs_table", "baseline"]
+
+# Sample Positioning
+ophyd.EpicsMotor:
+- name: xafs_x
+  prefix: "XF:06BMA-BI{XAFS-Ax:LinX}Mtr"
+  labels: ["sample", "motors", "baseline"]
+- name: xafs_y
+  prefix: "XF:06BMA-BI{XAFS-Ax:LinY}Mtr"
+  labels: ["sample", "motors", "baseline"]
+- name: xafs_rots
+  prefix: "XF:06BMA-BI{XAFS-Ax:RotS}Mtr"
+  labels: ["sample", "motors"]
+- name: xafs_pitch
+  prefix: "XF:06BMA-BI{XAFS-Ax:Roll}Mtr"  # swapped due to mounting
+  labels: ["sample", "motors"]
+- name: xafs_roll
+  prefix: "XF:06BMA-BI{XAFS-Ax:Pitch}Mtr"  # swapped due to mounting
+  labels: ["sample", "motors"]
+- name: xafs_garot
+  prefix: "XF:06BMA-BI{XAFS-Ax:Mtr8}Mtr"
+  labels: ["sample", "motors"]
+
+# Reference Stage
+ophyd.EpicsMotor:
+- name: xafs_refx
+  prefix: "XF:06BMA-BI{XAFS-Ax:RefX}Mtr"
+  labels: ["reference", "motors"]
+- name: xafs_refy
+  prefix: "XF:06BMA-BI{XAFS-Ax:LinXS}Mtr"
+  labels: ["reference", "motors"]
+
+# Encoded Motors (MC:09)
+ophyd.EpicsMotor:
+- name: xafs_detx
+  prefix: "XF:06BMA-BI{XAFS-Ax:Tbl_XD}Mtr"
+  labels: ["detector", "motors", "baseline"]
+- name: xafs_dety
+  prefix: "XF:06BM-ES{MC:09-Ax:1}Mtr"
+  labels: ["detector", "motors", "baseline"]
+- name: xafs_detz
+  prefix: "XF:06BM-ES{MC:09-Ax:2}Mtr"
+  labels: ["detector", "motors", "baseline"]
+- name: xafs_spare
+  prefix: "XF:06BM-ES{MC:09-Ax:3}Mtr"
+  labels: ["detector", "motors"]
+- name: xafs_bsy
+  prefix: "XF:06BM-ES{MC:09-Ax:4}Mtr"
+  labels: ["beam_stop", "motors"]
+- name: xafs_bsx
+  prefix: "XF:06BM-ES{MC:09-Ax:5}Mtr"
+  labels: ["beam_stop", "motors"]
+
+# Ion Chambers - Note: These will be created by device factory functions
+# Commented out to use Python device creation instead of YAML
+# quadem1:
+#   prefix: "XF:06BM-BI{EM:1}EM180:"
+#   labels: ["detectors", "electrometer", "baseline"]
+# ic0:
+#   prefix: "XF:06BM-BI{IC:0}EM180:"  
+#   labels: ["detectors", "ion_chambers"]
+# ic1:
+#   prefix: "XF:06BM-BI{IC:1}EM180:"
+#   labels: ["detectors", "ion_chambers"]  
+# ic2:
+#   prefix: "XF:06BM-BI{IC:3}EM180:"
+#   labels: ["detectors", "ion_chambers"]
+
+# Fast Shutters
+ophyd.EpicsSignal:
+- name: fs1
+  prefix: "XF:06BMA-OP{FS:1}Cmd:Opn-Cmd"
+  labels: ["shutters"]
+
+# Shutter Status
+ophyd.EpicsSignalRO:
+- name: fe_shutter
+  prefix: "XF:06BM-PPS{Sh:FE}Pos-Sts"
+  labels: ["shutters", "baseline"]
+- name: photon_shutter_a
+  prefix: "XF:06BM-PPS{Sh:A}Pos-Sts"
+  labels: ["shutters", "baseline"]
+
+# Temperature Controllers - Note: These will be created by device factory functions
+# Commented out to use Python device creation instead of YAML
+# lakeshore331:
+#   prefix: "XF:06BM-BI{LS:331-1}:"
+#   labels: ["temperature", "sample_environment"]
+# linkam:
+#   prefix: "XF:06BM-ES:{LINKAM}:"
+#   labels: ["temperature", "sample_environment"]

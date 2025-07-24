@@ -1,0 +1,14 @@
+# Guarneri-style device YAML configuration
+
+# Objects only available at NSLS-II
+
+# NSLS-II Ring Parameters (if available)
+# Note: This would need to be implemented for NSLS-II specific ring parameters
+# For now, this file serves as a placeholder for NSLS-II specific devices
+
+# Future NSLS-II specific devices can be added here:
+# - Ring current monitoring
+# - Beam position monitors  
+# - NSLS-II specific shutters
+# - Beamline-specific vacuum gauges
+# - etc.

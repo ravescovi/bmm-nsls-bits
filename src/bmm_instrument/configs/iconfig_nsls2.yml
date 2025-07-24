@@ -1,0 +1,135 @@
+# Configuration for the BMM NSLS-II Bluesky instrument package.
+
+# identify the version of this iconfig.yml file  
+ICONFIG_VERSION: 2.0.1
+
+# BMM beamline specific configuration
+
+### The short name for the databroker catalog.
+DATABROKER_CATALOG: &databroker_catalog bmm
+
+### RunEngine configuration
+RUN_ENGINE:
+    DEFAULT_METADATA:
+        beamline_id: BMM
+        instrument_name: Beamline for Materials Measurement (BMM)
+        facility: NSLS-II
+        proposal_id: commissioning
+        databroker_catalog: *databroker_catalog
+
+    ### EPICS PV to use for the `scan_id`.
+    ### BMM specific scan ID PV (update as needed)
+    SCAN_ID_PV: "XF:06BM-CT{BS:2-Det:1}Counter1"
+
+    ### Where to "autosave" the RE.md dictionary.
+    MD_PATH: .bmm_re_md_dict.yml
+
+    ### The progress bar is nice to see,
+    ### except when it clutters the output in Jupyter notebooks.
+    USE_PROGRESS_BAR: false
+
+### Baseline stream
+### When ENABLE=true, all ophyd objects with a "baseline" label
+### will be added to the baseline stream.
+BASELINE_LABEL:
+    ENABLE: true
+
+### Best Effort Callback Configurations
+### Optimized for BMM XAFS operations
+BEC:
+    BASELINE: true
+    HEADING: true
+    PLOTS: true  # Enable plots for BMM
+    TABLE: true
+
+### Support for known output file formats.
+### BMM typically uses both NeXus and SPEC formats
+NEXUS_DATA_FILES:
+    ENABLE: true
+    FILE_EXTENSION: h5
+    # BMM specific NeXus configuration
+    FILE_PATH: /nsls2/data/bmm/shared/{year}/{month}/{day}/
+    SCAN_ID_PREFIX: bmm_
+
+SPEC_DATA_FILES:
+    ENABLE: true
+    FILE_EXTENSION: dat
+    # BMM specific SPEC configuration  
+    FILE_PATH: /nsls2/data/bmm/shared/{year}/{month}/{day}/
+    SCAN_ID_PREFIX: bmm_
+
+### NSLS-II Data Management (replace APS DM)
+### NSLS-II does not use the same DM system as APS
+### This section can be used for NSLS-II specific data management
+NSLS2_DATA_MANAGEMENT:
+    ENABLE: false
+    # Future NSLS-II data management configuration can go here
+
+# ----------------------------------
+
+OPHYD:
+    ### Control layer for ophyd to communicate with EPICS.
+    ### BMM uses PyEpics by default
+    CONTROL_LAYER: PyEpics
+
+    ### default timeouts (seconds) - adjusted for BMM operations
+    TIMEOUTS:
+        PV_READ: &TIMEOUT 10    # Longer timeout for slower BMM devices
+        PV_WRITE: *TIMEOUT
+        PV_CONNECTION: *TIMEOUT
+
+# BMM specific configuration sections
+
+### XAFS Configuration
+XAFS:
+    # Default energy ranges for different edges (in eV)
+    EDGES:
+        Cu_K: 8979
+        Fe_K: 7112
+        Zn_K: 9659
+        Ni_K: 8333
+        Co_K: 7709
+        
+    # Default scan parameters
+    DEFAULT_SCAN_RANGE: [-200, 800]  # eV relative to edge
+    DEFAULT_STEP_SIZE: 0.5  # eV
+    
+### Motor Configuration  
+MOTORS:
+    # Default motor timeouts and tolerances
+    DEFAULT_TIMEOUT: 30.0  # seconds
+    DEFAULT_TOLERANCE: 0.01  # user units
+    
+### Detector Configuration
+DETECTORS:
+    # Ion chamber settings
+    ION_CHAMBERS:
+        I0_GAS: "N2"
+        IT_GAS: "N2"
+        IR_GAS: "Ar"
+        
+    # Fluorescence detector settings
+    XSPRESS3:
+        DEFAULT_ELEMENTS: 7
+        DEFAULT_ROI_WINDOW: [7000, 9000]  # eV
+
+### Temperature Control
+TEMPERATURE:
+    # Default temperature controller settings
+    LAKESHORE:
+        DEFAULT_SETPOINT: 300.0  # K
+        STABILITY_TOLERANCE: 0.5  # K
+        STABILITY_TIME: 30.0  # seconds
+        
+    LINKAM:
+        DEFAULT_SETPOINT: 25.0  # C
+        STABILITY_TOLERANCE: 1.0  # C
+        STABILITY_TIME: 60.0  # seconds
+
+### Sample Environment
+SAMPLE_ENVIRONMENT:
+    # Default sample positioning tolerances
+    POSITION_TOLERANCE: 0.01  # mm
+    ROTATION_TOLERANCE: 0.1   # degrees
+
+XMODE_DEBUG_LEVEL: Plain
